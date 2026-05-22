@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Давлет и Индира · 21 августа 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@300;400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+
+body{
+  background:#fdf6f0;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:24px 16px 60px;
+  overflow-x:hidden;
+}
+
+.card{
+  width:100%;
+  max-width:440px;
+  background:#fffaf7;
+  border:1px solid #ead5c8;
+  overflow:hidden;
+}
+
+/* flowers top */
+.fl-top{display:block;width:100%;background:#fdf0ea;}
+
+/* body */
+.body{padding:28px 28px 0;text-align:center;}
+
+.eyebrow{
+  display:block;
+  font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:#c9a090;margin-bottom:22px;
+}
+
+.wrap-names{position:relative;padding:0 44px;}
+
+.names{
+  font-family:'Great Vibes',cursive;
+  font-size:68px;color:#8b5e52;line-height:1.05;display:block;
+}
+.amp{
+  font-family:'Great Vibes',cursive;
+  font-size:40px;color:#d4a090;display:block;margin:2px 0;
+}
+
+/* side florals */
+.fl-side{
+  position:absolute;top:50%;
+  transform:translateY(-50%);
+  pointer-events:none;
+}
+.fl-side-l{left:0;}
+.fl-side-r{right:0;}
+
+.divider{
+  display:flex;align-items:center;gap:10px;
+  margin:20px auto;width:fit-content;
+}
+.dl{width:40px;height:1px;background:#d9b5a5;}
+.dd{width:4px;height:4px;border-radius:50%;background:#d9b5a5;}
+
+.tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-style:italic;font-weight:300;
+  color:#a07060;line-height:1.9;margin-bottom:24px;
+}
+
+/* details */
+.details{
+  display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;
+  background:#fdf0ea;
+  border-top:1px solid #e8c9bc40;
+  border-bottom:1px solid #e8c9bc40;
+  margin:0 -28px 24px;
+}
+.d-sep{background:#e0bfb0;}
+.d-cell{padding:14px 6px;text-align:center;}
+.d-lbl{
+  display:block;font-size:8px;letter-spacing:3px;
+  text-transform:uppercase;color:#c9a090;margin-bottom:6px;
+}
+.d-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;color:#7a4a3a;line-height:1.4;
+}
+
+/* countdown */
+.cd{
+  display:flex;align-items:flex-start;justify-content:center;
+  gap:10px;margin-bottom:28px;
+}
+.cd-item{text-align:center;min-width:48px;}
+.cd-num{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;color:#8b5e52;line-height:1;
+  min-height:40px;
+}
+.cd-lbl{
+  display:block;font-size:7px;letter-spacing:2px;
+  text-transform:uppercase;color:#c9a09080;margin-top:4px;
+}
+.cd-sep{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;color:#ddbfb0;padding-top:4px;
+}
+
+/* rsvp */
+.rsvp{padding:0 28px 28px;}
+
+.field{margin-bottom:14px;}
+.lbl{
+  display:block;font-size:8px;letter-spacing:3px;
+  text-transform:uppercase;color:#c9a090;margin-bottom:6px;
+}
+.inp{
+  display:block;width:100%;
+  background:#fdf8f5;
+  border:1px solid #e0bfb0;
+  padding:12px 14px;
+  font-family:'Jost',sans-serif;
+  font-size:16px;font-weight:300;
+  color:#7a4a3a;
+  outline:none;
+  border-radius:0;
+  -webkit-appearance:none;
+  -webkit-border-radius:0;
+}
+.inp:focus{border-color:#c9a090;}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+.radios{display:flex;gap:20px;flex-wrap:wrap;}
+.rl{
+  display:flex;align-items:center;gap:8px;
+  font-size:14px;color:#a07060;cursor:pointer;
+}
+.rl input[type=radio]{
+  width:18px;height:18px;
+  accent-color:#b07060;
+  cursor:pointer;
+}
+
+.btn{
+  display:block;width:100%;margin-top:4px;
+  font-family:'Jost',sans-serif;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:#fffaf7;background:#b07060;
+  padding:15px;border:none;cursor:pointer;
+  border-radius:0;-webkit-appearance:none;
+  -webkit-border-radius:0;
+}
+
+.ok{
+  display:none;text-align:center;
+  padding:20px 0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;font-style:italic;
+  color:#a07060;line-height:2;
+}
+
+/* bottom flowers */
+.fl-bot{display:block;width:100%;background:#fdf0ea;}
+
+@media(max-width:380px){
+  .names{font-size:56px;}
+  .two{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<!-- TOP FLOWERS -->
+<svg class="fl-top" viewBox="0 0 440 145" fill="none">
+  <rect width="440" height="145" fill="#fdf0ea"/>
+  <!-- centre -->
+  <ellipse cx="220" cy="40" rx="65" ry="48" fill="#f2b8c6" opacity="0.58"/>
+  <ellipse cx="186" cy="62" rx="50" ry="38" fill="#f7cdd6" opacity="0.5"/>
+  <ellipse cx="254" cy="64" rx="52" ry="40" fill="#fce4e8" opacity="0.46"/>
+  <ellipse cx="164" cy="44" rx="36" ry="27" fill="#e8a0b0" opacity="0.4"/>
+  <ellipse cx="276" cy="44" rx="36" ry="27" fill="#f2b8c6" opacity="0.4"/>
+  <path d="M202 100 Q194 118 188 138" stroke="#b8c9a0" stroke-width="1.4" fill="none" opacity="0.6"/>
+  <path d="M220 105 Q220 122 218 140" stroke="#b8c9a0" stroke-width="1.2" fill="none" opacity="0.52"/>
+  <path d="M238 100 Q246 118 252 138" stroke="#b8c9a0" stroke-width="1.4" fill="none" opacity="0.6"/>
+  <path d="M180 96 Q167 115 160 138" stroke="#b8c9a0" stroke-width="1.1" fill="none" opacity="0.44"/>
+  <path d="M260 96 Q273 115 280 138" stroke="#b8c9a0" stroke-width="1.1" fill="none" opacity="0.44"/>
+  <ellipse cx="185" cy="122" rx="20" ry="8" fill="#c5d9a8" opacity="0.58" transform="rotate(-36 185 122)"/>
+  <ellipse cx="253" cy="122" rx="20" ry="8" fill="#d0e0b5" opacity="0.52" transform="rotate(36 253 122)"/>
+  <ellipse cx="216" cy="134" rx="16" ry="6.5" fill="#c5d9a8" opacity="0.48" transform="rotate(4 216 134)"/>
+  <circle cx="220" cy="22" r="10" fill="#fce4e8" opacity="0.84"/><circle cx="220" cy="22" r="4" fill="#f2b8c6" opacity="0.98"/>
+  <circle cx="195" cy="35" r="7.5" fill="#fce4e8" opacity="0.74"/><circle cx="195" cy="35" r="3" fill="#e8a0b0" opacity="0.95"/>
+  <circle cx="245" cy="35" r="7.5" fill="#fce4e8" opacity="0.74"/><circle cx="245" cy="35" r="3" fill="#e8a0b0" opacity="0.95"/>
+  <circle cx="173" cy="58" r="6" fill="#fce4e8" opacity="0.6"/><circle cx="173" cy="58" r="2.4" fill="#f2b8c6" opacity="0.9"/>
+  <circle cx="267" cy="58" r="6" fill="#fce4e8" opacity="0.6"/><circle cx="267" cy="58" r="2.4" fill="#f2b8c6" opacity="0.9"/>
+  <!-- left -->
+  <ellipse cx="66" cy="57" rx="44" ry="32" fill="#f7cdd6" opacity="0.46"/>
+  <ellipse cx="42" cy="72" rx="32" ry="24" fill="#fce4e8" opacity="0.4"/>
+  <path d="M58 96 Q45 116 38 138" stroke="#b8c9a0" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <ellipse cx="38" cy="120" rx="18" ry="7" fill="#c5d9a8" opacity="0.5" transform="rotate(-30 38 120)"/>
+  <circle cx="90" cy="44" r="8.5" fill="#fce4e8" opacity="0.66"/><circle cx="90" cy="44" r="3.5" fill="#f2b8c6" opacity="0.9"/>
+  <circle cx="42" cy="47" r="7" fill="#fce4e8" opacity="0.58"/><circle cx="42" cy="47" r="2.8" fill="#e8a0b0" opacity="0.88"/>
+  <!-- right -->
+  <ellipse cx="374" cy="57" rx="44" ry="32" fill="#f7cdd6" opacity="0.46"/>
+  <ellipse cx="398" cy="72" rx="32" ry="24" fill="#fce4e8" opacity="0.4"/>
+  <path d="M382 96 Q395 116 402 138" stroke="#b8c9a0" stroke-width="1.2" fill="none" opacity="0.5"/>
+  <ellipse cx="402" cy="120" rx="18" ry="7" fill="#c5d9a8" opacity="0.5" transform="rotate(30 402 120)"/>
+  <circle cx="350" cy="44" r="8.5" fill="#fce4e8" opacity="0.66"/><circle cx="350" cy="44" r="3.5" fill="#f2b8c6" opacity="0.9"/>
+  <circle cx="398" cy="47" r="7" fill="#fce4e8" opacity="0.58"/><circle cx="398" cy="47" r="2.8" fill="#e8a0b0" opacity="0.88"/>
+  <!-- tiny edges -->
+  <ellipse cx="10" cy="65" rx="18" ry="14" fill="#f9d0dc" opacity="0.28"/>
+  <circle cx="12" cy="48" r="5" fill="#fce4e8" opacity="0.46"/><circle cx="12" cy="48" r="2" fill="#e8a0b0" opacity="0.76"/>
+  <ellipse cx="430" cy="65" rx="18" ry="14" fill="#f9d0dc" opacity="0.28"/>
+  <circle cx="428" cy="48" r="5" fill="#fce4e8" opacity="0.46"/><circle cx="428" cy="48" r="2" fill="#e8a0b0" opacity="0.76"/>
+  <!-- lavender -->
+  <circle cx="140" cy="26" r="4" fill="#d4c5e8" opacity="0.4"/>
+  <circle cx="300" cy="26" r="4" fill="#d4c5e8" opacity="0.4"/>
+</svg>
+
+<!-- BODY -->
+<div class="body">
+  <span class="eyebrow">С любовью приглашаем вас</span>
+
+  <div class="wrap-names">
+    <!-- left sprig -->
+    <svg class="fl-side fl-side-l" width="44" height="155" viewBox="0 0 44 155" fill="none">
+      <path d="M34 8 Q24 42 28 78 Q24 112 30 148" stroke="#b8c9a0" stroke-width="1.2" fill="none" opacity="0.52"/>
+      <ellipse cx="22" cy="38" rx="13" ry="5.5" fill="#c5d9a8" opacity="0.52" transform="rotate(-38 22 38)"/>
+      <ellipse cx="17" cy="78" rx="15" ry="6" fill="#d0e0b5" opacity="0.46" transform="rotate(14 17 78)"/>
+      <ellipse cx="22" cy="118" rx="13" ry="5.5" fill="#c5d9a8" opacity="0.46" transform="rotate(-22 22 118)"/>
+      <circle cx="38" cy="8" r="7.5" fill="#fce4e8" opacity="0.7"/><circle cx="38" cy="8" r="3" fill="#f2b8c6" opacity="0.94"/>
+      <circle cx="16" cy="58" r="6.5" fill="#fce4e8" opacity="0.6"/><circle cx="16" cy="58" r="2.6" fill="#e8a0b0" opacity="0.88"/>
+      <circle cx="32" cy="100" r="6" fill="#fce4e8" opacity="0.55"/><circle cx="32" cy="100" r="2.4" fill="#f2b8c6" opacity="0.85"/>
+      <circle cx="8" cy="32" r="3.5" fill="#d4c5e8" opacity="0.36"/>
+      <circle cx="6" cy="105" r="3" fill="#d4c5e8" opacity="0.32"/>
+    </svg>
+    <!-- right sprig -->
+    <svg class="fl-side fl-side-r" width="44" height="155" viewBox="0 0 44 155" fill="none">
+      <path d="M10 8 Q20 42 16 78 Q20 112 14 148" stroke="#b8c9a0" stroke-width="1.2" fill="none" opacity="0.52"/>
+      <ellipse cx="22" cy="38" rx="13" ry="5.5" fill="#c5d9a8" opacity="0.52" transform="rotate(38 22 38)"/>
+      <ellipse cx="27" cy="78" rx="15" ry="6" fill="#d0e0b5" opacity="0.46" transform="rotate(-14 27 78)"/>
+      <ellipse cx="22" cy="118" rx="13" ry="5.5" fill="#c5d9a8" opacity="0.46" transform="rotate(22 22 118)"/>
+      <circle cx="6" cy="8" r="7.5" fill="#fce4e8" opacity="0.7"/><circle cx="6" cy="8" r="3" fill="#f2b8c6" opacity="0.94"/>
+      <circle cx="28" cy="58" r="6.5" fill="#fce4e8" opacity="0.6"/><circle cx="28" cy="58" r="2.6" fill="#e8a0b0" opacity="0.88"/>
+      <circle cx="12" cy="100" r="6" fill="#fce4e8" opacity="0.55"/><circle cx="12" cy="100" r="2.4" fill="#f2b8c6" opacity="0.85"/>
+      <circle cx="36" cy="32" r="3.5" fill="#d4c5e8" opacity="0.36"/>
+      <circle cx="38" cy="105" r="3" fill="#d4c5e8" opacity="0.32"/>
+    </svg>
+
+    <span class="names">Давлет</span>
+    <span class="amp">&</span>
+    <span class="names">Индира</span>
+  </div>
+
+  <div class="divider"><div class="dl"></div><div class="dd"></div><div class="dl"></div></div>
+
+  <p class="tagline">Два сердца, один путь.<br>Разделите с нами начало<br>нашей общей истории.</p>
+
+  <div class="details">
+    <div class="d-cell"><span class="d-lbl">Дата</span><div class="d-val">21 августа<br>2026</div></div>
+    <div class="d-sep"></div>
+    <div class="d-cell"><span class="d-lbl">Время</span><div class="d-val">17:00</div></div>
+    <div class="d-sep"></div>
+    <div class="d-cell"><span class="d-lbl">Место</span><div class="d-val" style="font-size:12px">г. Манас<br>Ресторан «Кристал»</div></div>
+  </div>
+
+  <div class="cd">
+    <div class="cd-item"><span class="cd-num" id="D">0</span><span class="cd-lbl">дней</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-item"><span class="cd-num" id="H">00</span><span class="cd-lbl">часов</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-item"><span class="cd-num" id="M">00</span><span class="cd-lbl">минут</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-item"><span class="cd-num" id="S">00</span><span class="cd-lbl">секунд</span></div>
+  </div>
+</div>
+
+<!-- RSVP -->
+<div class="rsvp">
+  <div id="form">
+    <div class="field">
+      <label class="lbl" for="fn">Семья / Имя главы семьи</label>
+      <input class="inp" id="fn" type="text" placeholder="Например: Семья Ивановых" autocomplete="name">
+    </div>
+    <div class="field">
+      <span class="lbl">Вы придёте?</span>
+      <div class="radios">
+        <label class="rl"><input type="radio" name="att" value="yes"> С радостью придём</label>
+        <label class="rl"><input type="radio" name="att" value="no"> Не сможем</label>
+      </div>
+    </div>
+    <button class="btn" id="sbtn">Подтвердить присутствие</button>
+  </div>
+  <div class="ok" id="ok"></div>
+</div>
+
+<!-- BOTTOM FLOWERS -->
+<svg class="fl-bot" viewBox="0 0 440 90" fill="none">
+  <rect width="440" height="90" fill="#fdf0ea"/>
+  <ellipse cx="220" cy="60" rx="55" ry="40" fill="#f2b8c6" opacity="0.36"/>
+  <ellipse cx="182" cy="70" rx="42" ry="30" fill="#f7cdd6" opacity="0.3"/>
+  <ellipse cx="258" cy="70" rx="42" ry="30" fill="#fce4e8" opacity="0.28"/>
+  <path d="M206 38 Q200 22 194 6" stroke="#b8c9a0" stroke-width="1.3" fill="none" opacity="0.44"/>
+  <path d="M220 34 Q220 18 218 4" stroke="#b8c9a0" stroke-width="1.1" fill="none" opacity="0.38"/>
+  <path d="M234 38 Q240 22 246 6" stroke="#b8c9a0" stroke-width="1.3" fill="none" opacity="0.44"/>
+  <ellipse cx="192" cy="16" rx="17" ry="7" fill="#c5d9a8" opacity="0.46" transform="rotate(-26 192 16)"/>
+  <ellipse cx="248" cy="16" rx="17" ry="7" fill="#d0e0b5" opacity="0.42" transform="rotate(26 248 16)"/>
+  <circle cx="220" cy="52" r="8" fill="#fce4e8" opacity="0.62"/><circle cx="220" cy="52" r="3" fill="#f2b8c6" opacity="0.88"/>
+  <ellipse cx="70" cy="72" rx="36" ry="24" fill="#f7cdd6" opacity="0.28"/>
+  <path d="M64 50 Q52 34 42 14" stroke="#b8c9a0" stroke-width="1" fill="none" opacity="0.34"/>
+  <ellipse cx="40" cy="24" rx="15" ry="6" fill="#c5d9a8" opacity="0.38" transform="rotate(-20 40 24)"/>
+  <circle cx="76" cy="60" r="6.5" fill="#fce4e8" opacity="0.42"/><circle cx="76" cy="60" r="2.5" fill="#f2b8c6" opacity="0.72"/>
+  <ellipse cx="370" cy="72" rx="36" ry="24" fill="#f7cdd6" opacity="0.28"/>
+  <path d="M376 50 Q388 34 398 14" stroke="#b8c9a0" stroke-width="1" fill="none" opacity="0.34"/>
+  <ellipse cx="400" cy="24" rx="15" ry="6" fill="#c5d9a8" opacity="0.38" transform="rotate(20 400 24)"/>
+  <circle cx="364" cy="60" r="6.5" fill="#fce4e8" opacity="0.42"/><circle cx="364" cy="60" r="2.5" fill="#f2b8c6" opacity="0.72"/>
+  <circle cx="143" cy="68" r="3.5" fill="#d4c5e8" opacity="0.34"/>
+  <circle cx="297" cy="68" r="3.5" fill="#d4c5e8" opacity="0.34"/>
+</svg>
+
+</div><!-- /card -->
+
+<script>
+// ── COUNTDOWN ──
+var END = Date.UTC(2026,7,21,11,0,0); // 21 Aug 2026 17:00 Bishkek UTC+6
+
+function go(){
+  var now = Date.now(), diff = END - now;
+  if(diff < 0) diff = 0;
+  document.getElementById('D').textContent = Math.floor(diff/864e5);
+  document.getElementById('H').textContent = ('0'+Math.floor(diff%864e5/36e5)).slice(-2);
+  document.getElementById('M').textContent = ('0'+Math.floor(diff%36e5/6e4)).slice(-2);
+  document.getElementById('S').textContent = ('0'+Math.floor(diff%6e4/1e3)).slice(-2);
+  setTimeout(go, 1000);
+}
+go();
+
+// ── RSVP ──
+document.getElementById('sbtn').addEventListener('click', function(){
+  var fn = document.getElementById('fn').value.trim();
+  var att = document.querySelector('input[name="att"]:checked');
+  if(!fn || !att){ alert('Укажите название семьи и выберите ответ'); return; }
+  var txt = att.value==='yes'?'Придут':'Не придут';
+  new Image().src = 'https://script.google.com/macros/s/AKfycbzQjvTsAKBcziOKuYO2rq8hfQrvXcc6Csg6tdyFcP5DrwL6PDPt71b09zit1KaK0erYLA/exec'
+    +'?fname='+encodeURIComponent(fn)+'&lname=&attend='+encodeURIComponent(txt);
+  document.getElementById('form').style.display='none';
+  var ok = document.getElementById('ok');
+  ok.style.display='block';
+  ok.innerHTML = att.value==='yes'
+    ? '🌸 Спасибо!<br>Ждём вас 21 августа 2026.'
+    : '💐 Спасибо за ответ.<br>Будем скучать.';
+});
+</script>
+</body>
+</html>
