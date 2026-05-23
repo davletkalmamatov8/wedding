@@ -262,111 +262,7 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* MUSIC PLAYER - Mobile Optimized */
-        .music-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .music-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            border: 3px solid var(--white);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .music-btn:active { transform: scale(0.95); }
-
-        .music-btn.playing {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4); }
-            50% { box-shadow: 0 4px 40px rgba(212, 175, 55, 0.8); }
-        }
-
-        .music-icon {
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .music-btn.playing .music-icon {
-            animation: rotate 3s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .music-bars {
-            display: none;
-            gap: 3px;
-            align-items: flex-end;
-            height: 20px;
-        }
-
-        .music-btn.playing .music-bars {
-            display: flex;
-        }
-
-        .music-btn.playing .music-icon {
-            display: none;
-        }
-
-        .music-bar {
-            width: 3px;
-            background: var(--white);
-            border-radius: 2px;
-            animation: musicBar 0.5s ease infinite alternate;
-        }
-
-        .music-btn.playing .music-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
-        .music-btn.playing .music-bar:nth-child(2) { animation-delay: 0.1s; height: 12px; }
-        .music-btn.playing .music-bar:nth-child(3) { animation-delay: 0.2s; height: 16px; }
-        .music-btn.playing .music-bar:nth-child(4) { animation-delay: 0.3s; height: 10px; }
-
-        @keyframes musicBar {
-            from { height: 5px; }
-            to { height: 20px; }
-        }
-
-        .music-tooltip {
-            background: rgba(26, 26, 46, 0.9);
-            color: var(--gold);
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.65rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            white-space: nowrap;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-
-        .music-player:hover .music-tooltip {
-            opacity: 1;
-            transform: translateY(0);
-        }
+       
 
         /* Desktop styles */
         @media (min-width: 769px) {
@@ -479,7 +375,7 @@
         <a href="#home">Главная</a>
         <a href="#couple">О нас</a>
         <a href="#details">Детали</a>
-        <a href="#timeline">Расписание</a>
+        
         <a href="#rsvp">RSVP</a>
     </nav>
 
@@ -584,74 +480,13 @@
                 <p>
                     Делитесь моментами<br>
                     и фотографиями:<br><br>
-                    <span class="highlight">#ДавлетИИндира2026</span>
+                    <span class="highlight">#ДавлетиИндира2026</span>
                 </p>
             </div>
         </div>
     </section>
 
-    <section class="timeline-section" id="timeline">
-        <div class="section-title fade-in">
-            <h2>Расписание дня</h2>
-            <div class="ornament">✦</div>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-time">16:00</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-icon">🥂</div>
-                    <h4>Сбор гостей</h4>
-                    <p>Приветственный фуршет</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">17:00</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-icon">💍</div>
-                    <h4>Церемония</h4>
-                    <p>Торжественная регистрация</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">17:30</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-icon">📸</div>
-                    <h4>Фотосессия</h4>
-                    <p>Памятные кадры</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">18:00</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-icon">🍽️</div>
-                    <h4>Праздничный ужин</h4>
-                    <p>Поздравления и тосты</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">20:00</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-icon">🎂</div>
-                    <h4>Свадебный торт</h4>
-                    <p>Первый танец</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-time">20:30</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-icon">💃</div>
-                    <h4>Вечеринка</h4>
-                    <p>Танцы до утра!</p>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <section class="gallery-section" id="gallery">
         <div class="section-title fade-in">
