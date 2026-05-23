@@ -477,17 +477,17 @@
     </footer>
 
     <script>
-        // URL для Google Sheets - ЗАМЕНИТЕ НА ВАШ URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBn2-KkttXdAPDeI_3A2j3Z82Mcde1zqWx30LgcwJ0O9b3QOuDyPTQo5RP3Nul-wcpgQ/exec';
+        // ===== URL для Google Sheets =====
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQjvTsAKBcziOKuYO2rq8hfQrvXcc6Csg6tdyFcP5DrwL6PDPt71b09zit1KaK0erYLA/exec';
 
-        // Preloader
+        // ===== Preloader =====
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('preloader').classList.add('hidden');
             }, 1000);
         });
 
-        // Создание лепестков
+        // ===== Лепестки =====
         function createPetals() {
             const container = document.getElementById('petals');
             const symbols = ['🌸', '', '', ''];
@@ -504,7 +504,7 @@
         }
         createPetals();
 
-        // Таймер обратного отсчета
+        // ===== Таймер =====
         function updateCountdown() {
             const weddingDate = new Date('2026-08-21T16:00:00');
             const now = new Date();
@@ -527,11 +527,10 @@
                 document.getElementById('seconds').textContent = '00';
             }
         }
-
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Навигация при скролле
+        // ===== Навигация =====
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             if (window.scrollY > window.innerHeight * 0.5) {
@@ -541,7 +540,7 @@
             }
         });
 
-        // Анимации при скролле
+        // ===== Анимации при скролле =====
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -554,7 +553,7 @@
             observer.observe(el);
         });
 
-        // Отправка формы в Google Sheets
+        // ===== ОТПРАВКА ФОРМЫ (ИСПРАВЛЕНО) =====
         document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -569,11 +568,29 @@
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
+                
+                // --- ЛОГИКА РАЗНЫХ СООБЩЕНИЙ ---
+                const successMessageDiv = document.getElementById('success-message');
+                
+                if (data.attendance === 'Не смогу') {
+                    // Если гость НЕ сможет прийти
+                    successMessageDiv.innerHTML = `
+                        <div class="success-icon">💔</div>
+                        <h3>Нам будет вас не хватать!</h3>
+                        <p>Жаль, что вы не сможете присутствовать. Спасибо, что предупредили! Мы обязательно увидимся в другой раз.</p>
+                    `;
+                } else {
+                    // Если гость ПРИДЕТ
+                    successMessageDiv.innerHTML = `
+                        <div class="success-icon">💌</div>
+                        <h3>Спасибо!</h3>
+                        <p>Мы получили ваш ответ и с нетерпением ждём встречи!</p>
+                    `;
+                }
+                // ---------------------------------
                 
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 
@@ -583,7 +600,7 @@
                 
                 setTimeout(() => {
                     this.style.display = 'none';
-                    document.getElementById('success-message').classList.add('show');
+                    successMessageDiv.classList.add('show');
                 }, 500);
                 
             } catch (error) {
@@ -594,7 +611,7 @@
             }
         });
 
-        // Плавный скролл
+        // ===== Плавный скролл =====
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -605,7 +622,7 @@
             });
         });
 
-        // Параллакс эффект
+        // ===== Параллакс эффект =====
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
             const hero = document.querySelector('.hero-content');
