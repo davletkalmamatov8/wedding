@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: blob: filesystem:; script-src * 'unsafe-inline' 'unsafe-eval' blob:; style-src * 'unsafe-inline';">
     <title>Свадьба Давлета & Индиры | 21 августа 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
@@ -538,18 +538,20 @@
     </footer>
 
     <script>
-        // ===== ЗАМЕНИТЕ НА ВАШ URL =====
+        // URL для Google Sheets - ЗАМЕНИТЕ НА ВАШ URL
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQjvTsAKBcziOKuYO2rq8hfQrvXcc6Csg6tdyFcP5DrwL6PDPt71b09zit1KaK0erYLA/exec';
 
+        // Preloader
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('preloader').classList.add('hidden');
             }, 1000);
         });
 
+        // Создание лепестков
         function createPetals() {
             const container = document.getElementById('petals');
-            const symbols = ['🌸', '🌺', '', '✿'];
+            const symbols = ['🌸', '', '', ''];
             for (let i = 0; i < 15; i++) {
                 const petal = document.createElement('div');
                 petal.className = 'petal';
@@ -562,7 +564,8 @@
             }
         }
         createPetals();
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBULprSte3blPCVvjcYgcWpRmHIVMb3D0QbY7PMYZjGYuan42iAfLwhj7qwDU4E2qXJg/exec';
+
+        // Таймер обратного отсчета
         function updateCountdown() {
             const weddingDate = new Date('2026-08-21T16:00:00');
             const now = new Date();
@@ -589,6 +592,7 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
+        // Навигация при скролле
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('nav');
             if (window.scrollY > window.innerHeight * 0.5) {
@@ -598,6 +602,7 @@
             }
         });
 
+        // Анимации при скролле
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -610,7 +615,7 @@
             observer.observe(el);
         });
 
-        // ===== ОТПРАВКА ФОРМЫ В GOOGLE SHEETS =====
+        // Отправка формы в Google Sheets
         document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -622,17 +627,15 @@
             submitBtn.innerHTML = '<span class="loading"></span>Отправка...';
             
             try {
-                // Используем fetch с правильными настройками
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Важно для Google Apps Script
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data)
                 });
                 
-                // Ждем немного чтобы данные успели записаться
                 await new Promise(resolve => setTimeout(resolve, 1000));
                 
                 this.style.opacity = '0';
@@ -652,6 +655,7 @@
             }
         });
 
+        // Плавный скролл
         document.querySelectorAll('.nav a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -662,6 +666,7 @@
             });
         });
 
+        // Параллакс эффект
         window.addEventListener('scroll', () => {
             const scrolled = window.scrollY;
             const hero = document.querySelector('.hero-content');
