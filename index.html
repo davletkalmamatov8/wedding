@@ -712,7 +712,7 @@
  
     <script>
         // URL для Google Sheets
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyo5PxE9HNXb97OO7SVHDkcNQ0y71Of3_KsMovAHyMq6Nqz6Xg0bN_hM7vthEHPiBVtRw/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqnIr18YYsnInxFJrNUkKQr0-PCyd-D-1W7ePfLnsBYgd6LFfSIgsi9f37rvmB0Md14A/exec';
 
         // Preloader
         window.addEventListener('load', () => {
@@ -806,48 +806,36 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
+            // В блоке с отправкой формы замените try-часть на:
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="loading"></span>Отправка...';
             
             try {
-                await fetch(GOOGLE_SCRIPT_URL, {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'cors',                       // вместо no-cors
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
                 
-                // Разные сообщения для разных ответов
-                const successMessageDiv = document.getElementById('success-message');
+                if (!response.ok) throw new Error('Ошибка сети');
+                const result = await response.json();
                 
+                // Тут можно показать success-сообщение
+                const successMessageDiv = document.getElementById('success-message');
                 if (data.attendance === 'Не смогу') {
-                    successMessageDiv.innerHTML = `
-                        <div class="success-icon">💔</div>
-                        <h3>Нам будет вас не хватать!</h3>
-                        <p>Жаль, что вы не сможете присутствовать. Спасибо, что предупредили!</p>
-                    `;
+                    successMessageDiv.innerHTML = `<div class="success-icon">💔</div><h3>Нам будет вас не хватать!</h3><p>Жаль, что вы не сможете присутствовать. Спасибо, что предупредили!</p>`;
                 } else {
-                    successMessageDiv.innerHTML = `
-                        <div class="success-icon">💌</div>
-                        <h3>Спасибо!</h3>
-                        <p>Мы получили ваш ответ и с нетерпением ждём встречи!</p>
-                    `;
+                    successMessageDiv.innerHTML = `<div class="success-icon">💌</div><h3>Спасибо!</h3><p>Мы получили ваш ответ и с нетерпением ждём встречи!</p>`;
                 }
                 
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                this.style.opacity = '0';
-                this.style.transform = 'translateY(-20px)';
-                this.style.transition = 'all 0.5s ease';
-                
-                setTimeout(() => {
-                    this.style.display = 'none';
-                    successMessageDiv.classList.add('show');
-                }, 500);
+                document.getElementById('rsvp-form').style.display = 'none';
+                successMessageDiv.classList.add('show');
                 
             } catch (error) {
-                console.error('Error:', error);
-                alert('Произошла ошибка. Пожалуйста, попробуйте позже.');
+                console.error('Ошибка:', error);
+                alert('Не удалось отправить. Проверьте интернет или повторите позже.');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = 'Отправить ответ';
             }
