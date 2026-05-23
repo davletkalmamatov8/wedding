@@ -112,14 +112,39 @@
         }
         .countdown-separator { display: none; }
 
+        /* ===== ЖЕНИХ И НЕВЕСТА - В ОДИН РЯД ===== */
         .couple-section { background: var(--cream); }
-        .couple-container { max-width: 600px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .couple-person { text-align: center; flex: 1; min-width: 140px; }
-        .couple-photo { width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 15px; background: linear-gradient(135deg, var(--blush), var(--sage)); display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; overflow: hidden; }
+        .couple-container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 15px; 
+            flex-wrap: nowrap; /* Убрали wrap - всегда в ряд */
+        }
+        .couple-person { 
+            text-align: center; 
+            flex: 1; 
+            min-width: 0; /* Позволяет сжиматься */
+        }
+        .couple-photo { 
+            width: clamp(90px, 22vw, 150px); 
+            height: clamp(90px, 22vw, 150px); 
+            border-radius: 50%; 
+            margin: 0 auto 12px; 
+            background: linear-gradient(135deg, var(--blush), var(--sage)); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: clamp(2rem, 6vw, 3rem); 
+            position: relative; 
+            overflow: hidden; 
+        }
         .couple-photo::before { content: ''; position: absolute; top: -3px; left: -3px; right: -3px; bottom: -3px; border-radius: 50%; border: 2px solid var(--gold); }
-        .couple-person h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 5px; }
-        .couple-person p { font-size: 0.8rem; color: #888; font-weight: 300; }
-        .couple-heart { font-size: 2rem; color: var(--gold); animation: heartbeat 2s ease-in-out infinite; }
+        .couple-person h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 400; margin-bottom: 4px; }
+        .couple-person p { font-size: clamp(0.7rem, 2vw, 0.85rem); color: #888; font-weight: 300; }
+        .couple-heart { font-size: clamp(1.2rem, 3vw, 2rem); color: var(--gold); animation: heartbeat 2s ease-in-out infinite; flex-shrink: 0; }
 
         .details-section { background: var(--white); }
         .details-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -159,8 +184,16 @@
         .timeline-content p { font-size: 0.85rem; color: #888; font-weight: 300; }
         .timeline-icon { font-size: 1.2rem; margin-bottom: 5px; }
 
+        /* ===== ГАЛЕРЕЯ - ИСПРАВЛЕННАЯ ===== */
         .gallery-section { background: var(--white); padding: 60px 15px; }
-        .gallery-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .gallery-grid { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            grid-template-rows: repeat(3, auto);
+            gap: 10px; 
+        }
         .gallery-item { 
             aspect-ratio: 1;
             border-radius: 8px; 
@@ -175,6 +208,8 @@
             transition: transform 0.3s ease; 
         }
         .gallery-item:active { transform: scale(0.95); }
+        
+        /* Десктоп: 3 колонки с красивой раскладкой */
         .gallery-item:nth-child(1) { grid-row: span 2; }
         .gallery-item:nth-child(4) { grid-column: span 2; }
 
@@ -262,9 +297,113 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-       
+        /* MUSIC PLAYER */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
 
-        /* Desktop styles */
+        .music-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border: 3px solid var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .music-btn:active { transform: scale(0.95); }
+
+        .music-btn.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 4px 40px rgba(212, 175, 55, 0.8); }
+        }
+
+        .music-icon {
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn.playing .music-icon {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .music-bars {
+            display: none;
+            gap: 3px;
+            align-items: flex-end;
+            height: 20px;
+        }
+
+        .music-btn.playing .music-bars {
+            display: flex;
+        }
+
+        .music-btn.playing .music-icon {
+            display: none;
+        }
+
+        .music-bar {
+            width: 3px;
+            background: var(--white);
+            border-radius: 2px;
+            animation: musicBar 0.5s ease infinite alternate;
+        }
+
+        .music-btn.playing .music-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+        .music-btn.playing .music-bar:nth-child(2) { animation-delay: 0.1s; height: 12px; }
+        .music-btn.playing .music-bar:nth-child(3) { animation-delay: 0.2s; height: 16px; }
+        .music-btn.playing .music-bar:nth-child(4) { animation-delay: 0.3s; height: 10px; }
+
+        @keyframes musicBar {
+            from { height: 5px; }
+            to { height: 20px; }
+        }
+
+        .music-tooltip {
+            background: rgba(26, 26, 46, 0.9);
+            color: var(--gold);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .music-player:hover .music-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== DESKTOP STYLES ===== */
         @media (min-width: 769px) {
             .nav { padding: 15px 40px; gap: 30px; }
             .nav a { font-size: 0.75rem; letter-spacing: 3px; }
@@ -294,6 +433,7 @@
                 align-self: flex-start; margin-top: 20px;
             }
             
+            /* Жених и невеста - больше на десктопе */
             .couple-container { gap: 60px; }
             .couple-photo { width: 200px; height: 200px; font-size: 4rem; }
             .couple-person h3 { font-size: 1.8rem; }
@@ -337,6 +477,7 @@
             .timeline-content p { font-size: 0.85rem; }
             .timeline-icon { font-size: 1.3rem; }
             
+            /* Галерея - 3 колонки на десктопе */
             .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
             .gallery-item { font-size: 3rem; }
             .gallery-item:nth-child(1) { grid-row: span 2; }
@@ -375,7 +516,7 @@
         <a href="#home">Главная</a>
         <a href="#couple">О нас</a>
         <a href="#details">Детали</a>
-        
+        <a href="#timeline">Расписание</a>
         <a href="#rsvp">RSVP</a>
     </nav>
 
@@ -430,7 +571,7 @@
     <section class="couple-section" id="couple">
         <div class="section-title fade-in">
             <h2>Жених & Невеста</h2>
-            <div class="ornament">✦</div>
+            <div class="ornament"></div>
         </div>
         <div class="couple-container fade-in">
             <div class="couple-person">
@@ -486,12 +627,11 @@
         </div>
     </section>
 
-
-
+    
     <section class="gallery-section" id="gallery">
         <div class="section-title fade-in">
             <h2>Наша история</h2>
-            <div class="ornament">✦</div>
+            <div class="ornament"></div>
         </div>
         <div class="gallery-grid fade-in">
             <div class="gallery-item">📷</div>
@@ -566,32 +706,13 @@
     <footer class="footer">
         <div class="footer-names">Д & И</div>
         <div class="footer-date">21 августа 2026</div>
-        <p class="footer-hashtag">Делитесь моментами: <span>#ДавлетиИндира2026</span></p>
+        <p class="footer-hashtag">Делитесь моментами: <span>#ДавлетИИндира2026</span></p>
     </footer>
 
-    <!-- MUSIC PLAYER -->
-    <div class="music-player">
-        <button class="music-btn" id="music-btn" title="Включить музыку">
-            <span class="music-icon">🎵</span>
-            <div class="music-bars">
-                <div class="music-bar"></div>
-                <div class="music-bar"></div>
-                <div class="music-bar"></div>
-                <div class="music-bar"></div>
-            </div>
-        </button>
-        <div class="music-tooltip">Свадебная песня</div>
-    </div>
-
-    <!-- AUDIO ELEMENT -->
-    <audio id="wedding-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио элемент.
-    </audio>
-
+ 
     <script>
         // URL для Google Sheets
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxusoMk3fcJYIdzSDjsnw6i-VtRaNj5U4DPlupcIvfTa57fp579DdfzpdDesxPewlU4UQ/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAsyWrBBez0BGRjxcTQCJWee6JG0J1lhZkzfI8u4CFAoAKjgFABNkN8K8vmoB0BYNzGw/exec';
 
         // Preloader
         window.addEventListener('load', () => {
@@ -675,24 +796,7 @@
         // Установка начальной громкости
         weddingMusic.volume = 0.5;
 
-        // Включение/выключение музыки
-        musicBtn.addEventListener('click', async () => {
-            try {
-                if (isPlaying) {
-                    weddingMusic.pause();
-                    musicBtn.classList.remove('playing');
-                    musicBtn.title = 'Включить музыку';
-                } else {
-                    await weddingMusic.play();
-                    musicBtn.classList.add('playing');
-                    musicBtn.title = 'Пауза';
-                }
-                isPlaying = !isPlaying;
-            } catch (error) {
-                console.error('Error playing audio:', error);
-                alert('Нажмите на страницу сначала, чтобы включить музыку');
-            }
-        });
+    
 
         // ===== ОТПРАВКА ФОРМЫ =====
         document.getElementById('rsvp-form').addEventListener('submit', async function(e) {
