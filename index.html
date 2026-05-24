@@ -30,13 +30,25 @@ body { font-family:'Montserrat',sans-serif; color:var(--dark); background:var(--
 .preloader-heart { font-size:3rem; animation:heartbeat 1s ease-in-out infinite; }
 @keyframes heartbeat { 0%,100%{transform:scale(1)} 25%{transform:scale(1.2)} 75%{transform:scale(1.3)} }
 
-/* PETALS */
-.petals-container { position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
-.petal { position:absolute; top:-20px; opacity:0.6; animation:fall linear infinite; }
+/* PETALS — ИСПРАВЛЕНО: теперь поверх всего */
+.petals-container { 
+  position:fixed; 
+  inset:0; 
+  pointer-events:none; 
+  z-index: 9998; /* Поверх всего контента, но под preloader */
+  overflow:hidden;
+}
+.petal { 
+  position:absolute; 
+  top:-20px; 
+  opacity:0.5; /* Чуть прозрачнее чтобы не мешать */
+  animation:fall linear infinite;
+  user-select:none;
+}
 @keyframes fall {
-  0%   { transform:translateY(-10vh) rotate(0deg) translateX(0); opacity:0.7; }
+  0%   { transform:translateY(-10vh) rotate(0deg) translateX(0); opacity:0.6; }
   50%  { opacity:0.4; }
-  100% { transform:translateY(105vh) rotate(720deg) translateX(80px); opacity:0; }
+  100% { transform:translateY(110vh) rotate(720deg) translateX(100px); opacity:0; }
 }
 
 /* NAV */
@@ -491,18 +503,18 @@ window.addEventListener('load', function(){
   setTimeout(function(){ document.getElementById('preloader').classList.add('hidden'); }, 800);
 });
 
-// PETALS
+// PETALS — ИСПРАВЛЕНО: больше лепестков и падают везде
 (function(){
   var c = document.getElementById('petals');
-  var sym = ['🌸','🌺','🌷','✿','❀'];
-  for(var i=0;i<14;i++){
+  var sym = ['🌸','','🌷','','❀',''];
+  for(var i=0;i<25;i++){ // Увеличили количество с 14 до 25
     var p = document.createElement('div');
     p.className = 'petal';
     p.textContent = sym[Math.floor(Math.random()*sym.length)];
     p.style.left = (Math.random()*100)+'%';
-    p.style.fontSize = (Math.random()*12+10)+'px';
-    p.style.animationDuration = (Math.random()*10+14)+'s';
-    p.style.animationDelay = (Math.random()*12)+'s';
+    p.style.fontSize = (Math.random()*14+12)+'px'; // Чуть больше
+    p.style.animationDuration = (Math.random()*8+12)+'s'; // Быстрее падают
+    p.style.animationDelay = (Math.random()*10)+'s';
     c.appendChild(p);
   }
 })();
